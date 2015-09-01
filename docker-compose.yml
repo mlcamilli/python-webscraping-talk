@@ -1,0 +1,12 @@
+redis:
+    image: trackmaven/redis
+web:
+  build: .
+  volumes:
+    - .:/code
+  links:
+    - redis
+  environment:
+      DEVELOPMENT: True
+      REDIS_URL: "redis://redis:6379"
+  env_file: .env
